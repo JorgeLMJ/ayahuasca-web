@@ -1,0 +1,189 @@
+---
+// src/components/Services.astro
+
+const services = [
+  {
+    icon: '🌿',
+    title: 'Ceremonia de Ayahuasca',
+    description: 'Ceremonias sagradas guiadas por maestros curanderos con décadas de experiencia. Espacio seguro, preparado ritualmente.',
+    features: ['Screening previo', 'Preparación de dieta', 'Integración post-ceremonia'],
+  },
+  {
+    icon: '🌙',
+    title: 'Retiro de 7 Días',
+    description: 'Inmersión profunda en la medicina ancestral. Incluye dieta de plantas, meditación y múltiples ceremonias.',
+    features: ['Alojamiento incluido', '3 ceremonias', 'Cocinero de dieta'],
+  },
+  {
+    icon: '✨',
+    title: 'Terapia de Sanación',
+    description: 'Sesiones individuales de sanación energética, limpieza espiritual y acompañamiento personalizado.',
+    features: ['Sesión individual', 'Diagnóstico energético', 'Rituales de limpieza'],
+  },
+  {
+    icon: '🌵',
+    title: 'San Pedro (Huachuma)',
+    description: 'Ceremonias con el cactus sagrado de los Andes para expansión de conciencia y conexión con la naturaleza.',
+    features: ['Ambiente natural', 'Maestro andino', 'Jornada de día completo'],
+  },
+  {
+    icon: '🌸',
+    title: 'Baños de Plantas',
+    description: 'Purificación ritual con plantas medicinales de la selva amazónica. Limpian el campo energético y protegen el aura.',
+    features: ['Plantas nativas', 'Ritual personalizado', 'Bendición del maestro'],
+  },
+  {
+    icon: '🍃',
+    title: 'Dieta de Plantas',
+    description: 'Programa con plantas maestras como Noya Rao, Bobinsana o Chiric Sanango para profundizar la conexión espiritual.',
+    features: ['7 a 21 días', 'Retiro en soledad', 'Acompañamiento diario'],
+  },
+];
+---
+
+<section id="servicios" class="section section--cream">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="ornament">
+        <span class="ornament-text">Nuestros Servicios</span>
+      </div>
+      <h2>Experiencias que Transforman</h2>
+      <div class="divider-gold"></div>
+      <p class="section-subtitle">
+        Cada servicio está diseñado con respeto, seguridad y profundo conocimiento ancestral
+      </p>
+    </div>
+
+    <div class="services-grid">
+      {services.map((service, index) => (
+        <article
+          class="service-card reveal"
+          style={`animation-delay: ${index * 0.1}s`}
+          aria-label={service.title}
+        >
+          <div class="service-icon" aria-hidden="true">{service.icon}</div>
+          <h3 class="service-title">{service.title}</h3>
+          <p class="service-description">{service.description}</p>
+          <ul class="service-features" aria-label={`Características de ${service.title}`}>
+            {service.features.map(feature => (
+              <li class="service-feature">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                  <path d="M5 13l4 4L19 7"/>
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={`https://wa.me/51999999999?text=${encodeURIComponent(`Hola, me interesa el servicio: ${service.title}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="service-cta"
+            aria-label={`Consultar sobre ${service.title}`}
+          >
+            Consultar por WhatsApp
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .service-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(45,106,63,0.08);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(45,106,63,0.2);
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+    transition: transform var(--transition-base);
+  }
+
+  .service-card:hover .service-icon {
+    transform: scale(1.1) rotate(-5deg);
+  }
+
+  .service-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-jungle-deep);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+    color: var(--color-text-mid);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+
+  .service-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--color-jungle-light);
+    font-weight: 500;
+  }
+
+  .service-feature svg {
+    color: var(--color-jungle-light);
+    flex-shrink: 0;
+  }
+
+  .service-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-jungle-light);
+    text-decoration: none;
+    padding: 0.6rem 0;
+    border-top: 1px solid rgba(45,106,63,0.12);
+    transition: color var(--transition-fast), gap var(--transition-fast);
+    margin-top: auto;
+  }
+
+  .service-cta:hover {
+    color: var(--color-gold);
+    gap: 0.7rem;
+  }
+
+  @media (max-width: 640px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+</style>

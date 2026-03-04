@@ -1,0 +1,414 @@
+---
+// src/components/Header.astro
+// Sticky header with navigation, language switcher and mobile menu
+
+const currentPath = Astro.url.pathname;
+const lang = currentPath.startsWith('/en') ? 'en' : currentPath.startsWith('/pt') ? 'pt' : 'es';
+
+const navLinks = {
+  es: [
+    { href: '/',                  label: 'Inicio' },
+    { href: '/sobre-nosotros',    label: 'Nosotros' },
+    { href: '/servicios',         label: 'Servicios' },
+    { href: '/retiros',           label: 'Retiros' },
+    { href: '/galeria',           label: 'Galería' },
+    { href: '/testimonios',       label: 'Testimonios' },
+    { href: '/blog',              label: 'Blog' },
+    { href: '/preguntas-frecuentes', label: 'FAQ' },
+    { href: '/contacto',          label: 'Contacto' },
+  ],
+  en: [
+    { href: '/en',                label: 'Home' },
+    { href: '/en/about',          label: 'About' },
+    { href: '/en/services',       label: 'Services' },
+    { href: '/en/retreats',       label: 'Retreats' },
+    { href: '/en/gallery',        label: 'Gallery' },
+    { href: '/en/testimonials',   label: 'Testimonials' },
+    { href: '/en/blog',           label: 'Blog' },
+    { href: '/en/faq',            label: 'FAQ' },
+    { href: '/en/contact',        label: 'Contact' },
+  ],
+  pt: [
+    { href: '/pt',                label: 'Início' },
+    { href: '/pt/sobre',          label: 'Sobre' },
+    { href: '/pt/servicos',       label: 'Serviços' },
+    { href: '/pt/retiros',        label: 'Retiros' },
+    { href: '/pt/galeria',        label: 'Galeria' },
+    { href: '/pt/depoimentos',    label: 'Depoimentos' },
+    { href: '/pt/blog',           label: 'Blog' },
+    { href: '/pt/perguntas',      label: 'FAQ' },
+    { href: '/pt/contato',        label: 'Contato' },
+  ],
+};
+
+const links = navLinks[lang as keyof typeof navLinks] ?? navLinks.es;
+
+const langSwitcher = {
+  es: [
+    { href: '/',    code: 'ES', label: 'Español' },
+    { href: '/en',  code: 'EN', label: 'English' },
+    { href: '/pt',  code: 'PT', label: 'Português' },
+  ],
+};
+---
+
+<header id="site-header" class="site-header">
+  <div class="container header-inner">
+    <!-- Logo -->
+    <a href={lang === 'es' ? '/' : `/${lang}`} class="header-logo" aria-label="Spirit of Amazonas - Inicio">
+      <span class="logo-icon" aria-hidden="true">🌿</span>
+      <span class="logo-text">
+        <span class="logo-title">Spirit of</span>
+        <span class="logo-sub">Amazonas</span>
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav id="main-nav" class="header-nav" aria-label="Navegación principal">
+      <ul class="nav-list">
+        {links.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={['nav-link', { 'nav-link--active': currentPath === href || (href !== '/' && currentPath.startsWith(href)) }]}
+              aria-current={currentPath === href ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Right controls -->
+    <div class="header-controls">
+      <!-- Language switcher -->
+      <div class="lang-switcher" role="navigation" aria-label="Cambiar idioma">
+        {langSwitcher.es.map(({ href, code, label }) => (
+          <a
+            href={href}
+            class:list={['lang-btn', { 'lang-btn--active': lang === code.toLowerCase() }]}
+            title={label}
+            aria-label={`Cambiar a ${label}`}
+          >
+            {code}
+          </a>
+        ))}
+      </div>
+
+      <!-- WhatsApp CTA (desktop) -->
+      <a
+        href="https://wa.me/51999999999?text=Hola%2C%20me%20interesa%20un%20retiro"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="header-wa-btn"
+        aria-label="Contactar por WhatsApp"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.557 4.113 1.527 5.845L.073 23.203a.75.75 0 0 0 .903.962l5.534-1.451A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.878 0-3.645-.52-5.153-1.422l-.367-.217-3.803.998.998-3.803-.217-.367A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        WhatsApp
+      </a>
+
+      <!-- Hamburger button -->
+      <button
+        id="menu-toggle"
+        class="menu-toggle"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="hamburger" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <nav aria-label="Menú móvil">
+      <ul class="mobile-nav-list">
+        {links.map(({ href, label }) => (
+          <li>
+            <a href={href} class="mobile-nav-link">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="mobile-lang">
+      {langSwitcher.es.map(({ href, code, label }) => (
+        <a href={href} class:list={['lang-btn', { 'lang-btn--active': lang === code.toLowerCase() }]} title={label}>
+          {code}
+        </a>
+      ))}
+    </div>
+    <a
+      href="https://wa.me/51999999999"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mobile-wa-btn btn btn--whatsapp"
+    >
+      Contactar por WhatsApp
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    background: rgba(10, 26, 15, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 148, 26, 0.15);
+    transition: background 0.3s ease;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-block: 0.9rem;
+  }
+
+  /* Logo */
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .logo-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold-pale);
+    font-family: var(--font-body);
+    font-weight: 400;
+  }
+
+  .logo-sub {
+    font-size: 1.15rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-white);
+    letter-spacing: 0.02em;
+  }
+
+  /* Nav */
+  .header-nav { flex: 1; }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.15rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.78);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .nav-link:hover,
+  .nav-link--active {
+    color: var(--color-gold-light);
+    background: rgba(201, 148, 26, 0.1);
+  }
+
+  /* Controls */
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  /* Language switcher */
+  .lang-switcher {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .lang-btn {
+    padding: 0.25rem 0.55rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .lang-btn:hover,
+  .lang-btn--active {
+    color: var(--color-gold-light);
+    background: rgba(201, 148, 26, 0.15);
+    border-color: rgba(201, 148, 26, 0.35);
+  }
+
+  /* WA button desktop */
+  .header-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #fff;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .header-wa-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+    color: #fff;
+  }
+
+  /* Hamburger */
+  .menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 22px;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--color-gold-light);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .menu-toggle[aria-expanded="true"] .hamburger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] .hamburger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    background: var(--color-jungle-deep);
+    border-top: 1px solid rgba(201, 148, 26, 0.15);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+  }
+
+  .mobile-menu.open {
+    max-height: 600px;
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem var(--container-pad);
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 0.75rem 0;
+    color: rgba(255,255,255,0.85);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: color 0.2s, padding-left 0.2s;
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--color-gold-light);
+    padding-left: 0.5rem;
+  }
+
+  .mobile-lang {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem var(--container-pad);
+  }
+
+  .mobile-wa-btn {
+    margin: 0.5rem var(--container-pad) 1.5rem;
+    justify-content: center;
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 1100px) {
+    .nav-link { font-size: 0.78rem; padding: 0.35rem 0.5rem; }
+  }
+
+  @media (max-width: 900px) {
+    .header-nav { display: none; }
+    .header-wa-btn { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: block; }
+  }
+
+  @media (max-width: 480px) {
+    .lang-switcher { display: none; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu   = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    menu?.setAttribute('aria-hidden', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+  });
+
+  // Close mobile menu on link click
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>
