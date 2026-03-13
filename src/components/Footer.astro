@@ -27,14 +27,12 @@ const svgIcons: Record<string, string> = {
 
 const navPages = [
   { href: '/',                     label: 'Inicio' },
-  { href: '/sobre-nosotros',       label: 'Nosotros' },
   { href: '/servicios',            label: 'Servicios' },
   { href: '/retiros',              label: 'Retiros' },
   { href: '/galeria',              label: 'Galería' },
-  { href: '/testimonios',          label: 'Testimonios' },
-  { href: '/blog',                 label: 'Blog' },
-  { href: '/preguntas-frecuentes', label: 'FAQ' },
+  { href: '/recursos',             label: 'Recursos' },
   { href: '/contacto',             label: 'Contacto' },
+  { href: '/sobre-nosotros',       label: 'Nosotros' },
   { href: '/libro-reclamaciones',  label: 'Libro de Reclamaciones' },
 ];
 ---
@@ -53,10 +51,10 @@ const navPages = [
 
         <!-- Brand column -->
         <div class="footer-brand">
-          <a href="/" class="footer-logo" aria-label="Spirit of Amazonas">
-            <span class="logo-icon" aria-hidden="true">🌿</span>
+          <a href="/" class="footer-logo" aria-label="Ayahuasca Cusco">
+            <img src="/logo.png" alt="Ayahuasca Cusco Logo" class="logo-img-footer" width="48" height="48" />
             <span class="logo-text">
-              <span class="logo-title">Spirit of</span>
+              <span class="logo-title">Ayahuasca</span>
               <span class="logo-sub">Cusco</span>
             </span>
           </a>
@@ -159,7 +157,7 @@ const navPages = [
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
       <p class="footer-copy">
-        &copy; {year} Ayahuasca Peru. Todos los derechos reservados.
+        &copy; {year} Ayahuasca Cusco. Todos los derechos reservados.
       </p>
       <nav class="footer-legal" aria-label="Legal">
         <a href="/privacidad" class="footer-legal-link">Privacidad</a>
@@ -207,7 +205,7 @@ const navPages = [
     text-decoration: none;
     margin-bottom: 1.25rem;
   }
-  .logo-icon { font-size: 1.8rem; }
+  .logo-img-footer { border-radius: 50%; object-fit: contain; }
   .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
   .logo-title {
     font-size: 0.65rem;

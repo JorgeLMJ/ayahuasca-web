@@ -1,7 +1,7 @@
 ---
 // src/layouts/Layout.astro
-// Main SEO layout with JSON-LD structured data
 import '../styles/global.css';
+import EmailChatWidget from '../components/EmailChatWidget.astro';
 
 interface Props {
   title: string;
@@ -123,6 +123,8 @@ const jsonLD = {
   <div id="scroll-progress" aria-hidden="true"></div>
 
   <slot />
+  
+  <EmailChatWidget />
 
   <!-- Scroll reveal & progress scripts -->
   <script>
