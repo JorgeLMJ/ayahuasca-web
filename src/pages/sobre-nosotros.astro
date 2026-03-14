@@ -55,6 +55,60 @@ const team = [
       </div>
     </section>
 
+    <!-- About snippet from Home -->
+    <section id="nosotros-intro" class="section section--dark about-home">
+      <div class="container">
+        <div class="about-home-grid">
+          <div class="about-home-text reveal">
+            <div class="ornament" style="justify-content:flex-start">
+              <span class="ornament-text" style="color:var(--color-gold-pale)">Quiénes Somos</span>
+            </div>
+            <h2 style="color:var(--color-white)">Guardianes de la Medicina Ancestral</h2>
+            <div class="divider-gold" style="margin:1rem 0"></div>
+            <p style="color:rgba(255,255,255,0.75); margin-bottom:1.25rem">
+              Somos un centro de sanación espiritual dedicado a preservar y compartir las tradiciones sagradas de la Amazonía. Nuestros facilitadores cuentan con más de 15 años de experiencia en ceremonias de ayahuasca.
+            </p>
+            <p style="color:rgba(255,255,255,0.65); margin-bottom:2rem">
+              Trabajamos con maestros curanderos indígenas para garantizar la autenticidad y seguridad de cada ceremonia. Nuestro enfoque combina el conocimiento ancestral con las mejores prácticas de acompañamiento contemporáneo.
+            </p>
+            <div class="about-stats">
+              <div class="about-stat">
+                <span class="stat-n">+500</span>
+                <span class="stat-l">Ceremonias</span>
+              </div>
+              <div class="about-stat">
+                <span class="stat-n">15+</span>
+                <span class="stat-l">Años de Exp.</span>
+              </div>
+              <div class="about-stat">
+                <span class="stat-n">40+</span>
+                <span class="stat-l">Países</span>
+              </div>
+              <div class="about-stat">
+                <span class="stat-n">4</span>
+                <span class="stat-l">Facilitadores</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-home-visual reveal" style="animation-delay:0.2s">
+            <div class="about-visual-card">
+              <div class="visual-icon" aria-hidden="true">🌿</div>
+              <blockquote class="visual-quote">
+                "La planta no te da nada que no esté dentro de ti. Solo te ayuda a recordar quién eres."
+              </blockquote>
+              <cite class="visual-cite">— Don Antonio, Maestro Curandero</cite>
+            </div>
+            <div class="about-certifications">
+              <div class="cert-item">✅ Facilitadores Certificados</div>
+              <div class="cert-item">✅ Protocolo Médico Previo</div>
+              <div class="cert-item">✅ Plantas Preparadas Ritualmente</div>
+              <div class="cert-item">✅ Integración Post-Ceremonia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Mission / Vision -->
     <section class="section section--cream">
       <div class="container">
@@ -88,7 +142,7 @@ const team = [
             </div>
             <h2 style="color:var(--color-white); margin-bottom:1.5rem">Un Legado de Sanación</h2>
             <p style="color:rgba(255,255,255,0.75); margin-bottom:1rem">
-              Spirit of Amazonas nació en 2009 de la visión de compartir la sabiduría de los maestros curanderos shipibo con personas de todo el mundo que buscaban sanación y transformación espiritual.
+              Spirit of Cusco nació en 2009 de la visión de compartir la sabiduría de los maestros curanderos shipibo con personas de todo el mundo que buscaban sanación y transformación espiritual.
             </p>
             <p style="color:rgba(255,255,255,0.65); margin-bottom:1rem">
               Desde entonces, hemos acompañado a más de 500 personas de más de 40 países en sus procesos de expansión de conciencia. Cada ceremonia es única, cada experiencia es sagrada.
@@ -149,6 +203,75 @@ const team = [
     max-width: 600px;
   }
 
+  /* About Intro Styles */
+  .about-home-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .about-stat { text-align: center; }
+  .stat-n {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-gold-light);
+  }
+  .stat-l {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.45);
+  }
+  .about-visual-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-xl);
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .visual-icon {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+    display: block;
+    animation: floatY 4s ease-in-out infinite;
+  }
+  .visual-quote {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .visual-cite {
+    font-size: 0.82rem;
+    color: var(--color-gold-pale);
+    font-style: normal;
+  }
+  .about-certifications {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .cert-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* Mission / Vision */
   .mv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; }
   .mv-card {
     background: var(--color-white);
@@ -183,6 +306,12 @@ const team = [
   .team-name { font-size: 1.1rem; font-weight: 700; color: var(--color-jungle-deep); margin-bottom: 0.25rem; }
   .team-role { font-size: 0.8rem; color: var(--color-gold); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.875rem; }
   .team-bio { font-size: 0.875rem; color: var(--color-text-mid); line-height: 1.7; }
+
+  @media (max-width: 900px) {
+    .about-home-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-stats { grid-template-columns: repeat(2, 1fr); }
+    .about-certifications { grid-template-columns: 1fr; }
+  }
 
   @media (max-width: 768px) {
     .story-grid { grid-template-columns: 1fr; }

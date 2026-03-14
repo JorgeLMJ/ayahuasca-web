@@ -7,8 +7,9 @@ interface Props {
 }
 
 const {
-  title    = 'Nuestra ubicación en Iquitos, Perú',
-  embedSrc = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127607.5!2d-73.31583!3d-3.7437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ea0a2b2e4b31c7%3A0x2e31e1c9d5e88c2c!2sIquitos%2C%20Peru!5e0!3m2!1ses!2spe!4v1',
+  title    = 'Centro Histórico del Cusco, Perú',
+  // URL en formato "embed" para que funcione correctamente dentro de un <iframe>
+  embedSrc = 'https://maps.google.com/maps?q=Centro+Historico+del+Cusco&t=&z=15&ie=UTF8&iwloc=&output=embed',
 } = Astro.props;
 ---
 
@@ -22,7 +23,7 @@ const {
     </div>
     <div>
       <h3 class="map-title">Nuestra Ubicación</h3>
-      <p class="map-address">Iquitos, Loreto, Perú — Amazonía</p>
+      <p class="map-address">Cusco, Cusco, Perú — Cusco</p>
     </div>
   </div>
 
